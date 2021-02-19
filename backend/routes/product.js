@@ -4,7 +4,7 @@ const { Product } = require('../models');
 
 router.get('/', async (req, res) => {
     const products = await Product.findAll();
-    res.send(200).json(products);
+    res.status(200).json(products);
 });
 
 router.get('/:id', async (req, res) => {
@@ -13,12 +13,12 @@ router.get('/:id', async (req, res) => {
             id: req.params.id
         }
     });
-    res.send(200).json(product);
+    res.status(200).json(product);
 });
 
 router.post('/', async (req, res) => {
     const product = await Product.create(req.body);
-    res.send(201).json(product);
+    res.status(201).json(product);
 });
 
 router.delete('/:id', async (req, res) => {
@@ -27,7 +27,7 @@ router.delete('/:id', async (req, res) => {
             id: req.params.id
         }
     });
-    res.send(200).json(product);
+    res.status(200).json(product);
 });
 
 router.put('/:id', async (req, res) => {
@@ -36,7 +36,7 @@ router.put('/:id', async (req, res) => {
             id: req.params.id
         }
     });
-    res.send(200).json(product);
+    res.status(200).json(product);
 });
 
 module.exports = router;
