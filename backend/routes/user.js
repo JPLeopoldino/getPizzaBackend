@@ -3,8 +3,9 @@ const router = express.Router();
 const { User } = require('../models');
 const sha256 = require('js-sha256');
 const checkJWT = require('../middlewares/auth');
+const checkADM = require('../middlewares/authAdm');
 
-router.get('/', checkJWT, async(req, res)=>{
+router.get('/', checkJWT, checkADM, async(req, res)=>{
     const users = await User.findAll();
     res.status(200).json(users);
 });
