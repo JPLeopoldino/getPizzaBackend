@@ -1,13 +1,14 @@
 const express = require('express');
 const router = express.Router();
 const { Product } = require('../models');
+const checkJWT = require('../middlewares/auth');
 
-router.get('/', async (req, res) => {
+router.get('/', checkJWT, async (req, res) => {
     const products = await Product.findAll();
     res.status(200).json(products);
 });
 
-router.get('/:id', async (req, res) => {
+router.get('/:id', checkJWT, async (req, res) => {
     const product = await Product.findAll({
         where: {
             id: req.params.id
@@ -16,12 +17,12 @@ router.get('/:id', async (req, res) => {
     res.status(200).json(product);
 });
 
-router.post('/', async (req, res) => {
+router.post('/', checkJWT, async (req, res) => {
     const product = await Product.create(req.body);
     res.status(201).json(product);
 });
 
-router.delete('/:id', async (req, res) => {
+router.delete('/:id', checkJWT, async (req, res) => {
     const product = await Product.destroy({
         where:{
             id: req.params.id
@@ -30,7 +31,7 @@ router.delete('/:id', async (req, res) => {
     res.status(200).json(product);
 });
 
-router.put('/:id', async (req, res) => {
+router.put('/:id', checkJWT, async (req, res) => {
     const product = await Product.update(req.body, {
         where:{
             id: req.params.id
