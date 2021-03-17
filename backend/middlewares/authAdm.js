@@ -9,7 +9,7 @@ const checkADM = async (req, res, next)=>{
 
     console.log(result[0].type);
 
-    if(result[0].type != "ADM"){
+    if(result[0].type != "admin"){
         res.status(401).json({message: "Not Allowed"})
     }
 
